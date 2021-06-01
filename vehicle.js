@@ -2,11 +2,11 @@
 
 class Vehicule {
   constructor (path){
-    this.path = path;
-    this.startX;   // Initial x coordinate
-    this.stopX;   // Final x coordinate
-    this.startY;   // Initial y coordinate
-    this.stopY;    // Final y coordinate
+    this.path = path; // Full path vector
+    this.startX;   // Initial x coordinate of path segment
+    this.stopX;   // Final x coordinate of path segment
+    this.startY;   // Initial y coordinate of path segment
+    this.stopY;    // Final y coordinate of path segment
     this.x = this.startX;    // Current x coordinate
     this.y = this.startY;    // Current y coordinate
     this.step = 0.005;  // createCanvas of each step (0.0 to 1.0)
@@ -33,19 +33,19 @@ class Vehicule {
     this.stopX = this.path[2+this.i];
     this.stopY = this.path[3+this.i];
 
-    //move from right to left
+    //move from left to right
     if (this.startY == this.stopY && this.pct < 1.0){
       this.x = this.startX + ((this.stopX-this.startX) * this.pct);
       this.y = this.startY + ((this.stopY-this.startY) * this.pct);
       this.pct += this.step;
     }
-    //move from right to left AND up
+    //move from left to right AND up
     else if (this.startY > this.stopY && this.pct < 1.0) {
       this.x = this.startX + ((this.stopX-this.startX) * this.pct);
       this.y = this.startY + ((this.stopY-this.startY) * this.pct);
       this.pct += this.step;
     }
-    //move from right to left AND down
+    //move from left to right AND down
     else if (this.startY < this.stopY && this.pct < 1.0) {
       this.x = this.startX + ((this.stopX-this.startX) * this.pct);
       this.y = this.startY + ((this.stopY - this.startY) * this.pct);
@@ -54,5 +54,10 @@ class Vehicule {
 
   }
 
+  end(){
+    if (this.startX == 600){
+      return 1;
+    }
+  }
 
 }
