@@ -17,27 +17,38 @@ function setup() {
 
 }
 
+// Vehicule deleted if mouse is pressed
 function mousePressed(){
-  let v = new Vehicule();
   vehicules.shift();
 }
 
 function draw(){
   background(220);
+  // Create timer
   timer = millis()/1000;
 
+  // Show the three paths define at the beginning
   p1.show();
   p2.show();
   p3.show();
+
+  // Initizializes the vehicules
   spawn();
 
-  //Vehicule estetics and moves
+
+  // Displays and Moves the Vehicules
   for (let i = 0; i < vehicules.length; i++) {
     vehicules[i].update();
     vehicules[i].show();
+    // Delete vehicule when it reaches the end of the path
+    if (vehicules[i].end()==1){
+      vehicules.shift();
+    }
   }
 
+
 }
+
 
 //Function that dictates the spawning behaviour of vehicules
 function spawn (){
